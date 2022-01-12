@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProductsController as ProductsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,9 +16,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
+});
+
+Route::prefix('/')->middleware('auth')->group(function () {
+    Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
+    Route::get('/products', [ProductsController::class, 'index'])->name('products');
 });
 
 Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
