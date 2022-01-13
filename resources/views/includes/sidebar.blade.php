@@ -13,8 +13,8 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="index.html">
+            <li class="nav-item {{ (request()->is('admin/dashboard')) ? 'active' : '' }}">
+                <a class="nav-link" href="{{route('dashboard')}}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -28,10 +28,17 @@
             </div>
 
             <!-- Nav Item - Konsumen -->
-            <li class="nav-item">
-                <a class="nav-link" href="#">
+            <li class="nav-item {{ (request()->is('admin/products')) ? 'active' : '' }}">
+                <a class="nav-link" href="{{route('products')}}">
                     <i class="fas fa-fw fa-boxes"></i>
                     <span>Daftar Barang</span></a>
+            </li>
+
+            <!-- Nav Item - Konsumen -->
+            <li class="nav-item {{ (request()->is('admin/categories')) ? 'active' : '' }}">
+                <a class="nav-link" href="{{route('categories')}}">
+                    <i class="fas fa-fw fa-list"></i>
+                    <span>Kategori Barang</span></a>
             </li>
 
             <!-- Nav Item - Konsumen -->

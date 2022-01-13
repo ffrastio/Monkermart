@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductsController as ProductsController;
 use Illuminate\Support\Facades\Route;
@@ -19,9 +20,10 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::prefix('/')->middleware('auth')->group(function () {
-    Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
-    Route::get('/products', [ProductsController::class, 'index'])->name('products');
+Route::prefix('admin')->namespace('Admin')->middleware('auth')->group(function () {
+    Route::get('dashboard', [HomeController::class, 'index'])->name('dashboard');
+    Route::get('products', [ProductsController::class, 'index'])->name('products');
+    Route::get('categories', [CategoryController::class, 'index'])->name('categories');
 });
 
 Auth::routes();

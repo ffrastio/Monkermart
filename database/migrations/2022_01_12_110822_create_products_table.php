@@ -17,13 +17,15 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug');
-            $table->foreignId('categories_id')->constrained();
+            $table->bigInteger('categories_id');
+            // $table->foreignId('categories_id')->constrained();
             $table->integer('qty');
             $table->string('selling_price');
             $table->string('buying_price');
-            $table->boolean('is_loan')->default('false');
+            $table->boolean('is_loan')->default(false);
             $table->softDeletes();
             $table->timestamps();
+            // $table->foreign('categories_id')->references('id')->on('categories')->onDelete('cascade');
         });
     }
 
